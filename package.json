@@ -1,0 +1,10 @@
+{
+  "name": "ai-gtm-ladder",
+  "version": "1.0.0",
+  "description": "Learning-path tracker for the 15-step AI GTM ladder: three levels, fixed order, one honest question per step.",
+  "bin": { "ai-gtm-ladder": "bin/ladder.js" },
+  "scripts": { "test": "node --test test/" },
+  "engines": { "node": ">=18" },
+  "license": "MIT",
+  "private": true
+}
