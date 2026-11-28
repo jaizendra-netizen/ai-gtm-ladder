@@ -1,0 +1,59 @@
+---
+title: "ai-gtm-ladder"
+description: "Node.js learning-path tracker for the 15-step AI GTM ladder: three levels, fixed order, gap and dependency warnings, next-step and tool notes. Zero dependencies."
+---
+
+A zero-dependency Node.js CLI that tracks your climb up the fifteen-step ladder in the post
+[15 Steps to Learn AI GTM](https://www.onegtmlab.dev/blog/15-steps-to-learn-ai-gtm).
+The post's argument: a lot of people start at step twelve, wanting agents and orchestration, and skip the ladder that makes them
+work, so an agent inherits every weakness underneath it. The order is fixed: foundations first, engineering second, agents last.
+The ladder is not a difficulty ranking, it is a **dependency chain**.
+
+## The ladder
+
+| Level | Steps |
+| --- | --- |
+| 1. AI-assisted | 1 GTM foundations, 2 Prompt like an operator, 3 Sharpen your ICP, 4 Positioning and messaging, 5 Content leverage |
+| 2. GTM engineering | 6 Signals over lists, 7 Data and enrichment, 8 Signal pipelines, 9 Timing and relevance, 10 Outbound systems |
+| 3. Agentic GTM | 11 Operator setup, 12 Research to outreach, 13 Orchestration, 14 Measurement loops, 15 Compounding engine |
+
+## Use
+
+Requires Node.js 18+.
+
+```bash
+node bin/ladder.js list                 # the 15 steps by level
+node bin/ladder.js show 12              # what a step means and which earlier steps it draws on
+node bin/ladder.js done 1 2 3           # mark steps you can honestly call solid
+node bin/ladder.js status               # checklist, level progress, gaps, next step
+node bin/ladder.js next                 # the one step to work on now
+node bin/ladder.js tools 2              # established vs still-moving tools for a level
+```
+
+```
+level 1: 3/5, level 2: 0/5, level 3: 0/5
+next: step 4, Positioning and messaging
+```
+
+State lives in `.ai-gtm-ladder.json` in the current folder (`--file PATH` to change it).
+
+How it follows the post:
+
+- **Where to start**: `next` implements "find the highest step you can honestly say is solid, then start at the one after it".
+- **Dependency chain**: `status` lists any unsolid step *below* your highest solid one as a gap, because teams fail by trying to
+  buy step 15 without building steps 1 through 10.
+- **Named dependencies**: where the post says a step uses earlier ones (step 9 reuses step 5's content; step 10 is possible
+  because of steps 6 to 9; step 12 uses the ICP, messaging, signals and enrichment of steps 3, 4, 6 and 7; step 15 is the
+  residue of step 14), `status` warns when a solid step draws on one that is not solid yet.
+- **Tools**: `tools` separates *established* (stable enough to build a process around) from *still moving* (worth using and
+  worth watching), per level, as the post does.
+
+Nothing is scored automatically: you decide when a step is solid.
+
+## Test
+
+```bash
+npm test
+```
+
+MIT licensed.

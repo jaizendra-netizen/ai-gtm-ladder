@@ -1,0 +1,10 @@
+{
+  "name": "ai-gtm-ladder",
+  "description": "Node.js learning-path tracker for the 15-step AI GTM ladder: three levels, fixed order, gap and dependency warnings, next-step and tool notes. Zero dependencies.",
+  "sidebar": [
+    {
+      "title": "Overview",
+      "href": "/"
+    }
+  ]
+}
